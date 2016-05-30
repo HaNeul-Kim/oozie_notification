@@ -1,5 +1,7 @@
 # oozie_notification
 
+oozie monitoring 을 위한 oozie notification 사용하기
+
 git clone https://github.com/HaNeul-Kim/oozie_notification
 
 cd oozie_notification
