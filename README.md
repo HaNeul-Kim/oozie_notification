@@ -34,7 +34,7 @@ echo "CLASSPATH=\$CATALINA_HOME/lib/jul-to-slf4j-VERSION.jar:\$CATALINA_HOME/lib
 
 === mysql 설정
 
-mysql -u<USER> -p < import.sql
+mysql -u${USER} -p < import.sql
 
 === put hdfs
 
