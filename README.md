@@ -26,6 +26,7 @@ cp $CATALINA_HOME/conf/logging.properties $CATALINA_HOME/conf/logging.properties
 
 # 아래 두 명령어 중 하나만 해준다. 같은 의미임.
 echo "handlers = org.slf4j.bridge.SLF4JBridgeHandler" | tee -a $CATALINA_HOME/conf/logging.properties
+
 echo "handlers = org.slf4j.bridge.SLF4JBridgeHandler" >> $CATALINA_HOME/conf/logging.properties
 
 # VERSION 은 각자 환경에 맞게 바꾼다.
