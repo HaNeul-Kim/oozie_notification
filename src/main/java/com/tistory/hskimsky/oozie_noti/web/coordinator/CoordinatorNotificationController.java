@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 @RequestMapping("/coordinator")
@@ -16,9 +17,10 @@ public class CoordinatorNotificationController {
     @Autowired
     private CoordinatorNotificationService service;
 
-    @RequestMapping("/{actionId}/{status}")
+    @RequestMapping(value = "/{actionId}/{status}", method = RequestMethod.GET)
     public String coordinatorActionStatusNotification(@PathVariable String actionId,
                                                       @PathVariable String status) {
+        // oozie.coord.workflow.notification.url=http://hdm3.hdp.local:8080/coordinator/$actionId/$status
         logger.info("actionId = {}", actionId);
         logger.info("status = {}", status);
 

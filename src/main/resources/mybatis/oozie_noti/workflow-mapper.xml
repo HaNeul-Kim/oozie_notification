@@ -9,7 +9,7 @@
     </insert>
 
     <insert id="insertNodeStartEnd" parameterType="map">
-        INSERT INTO workflow_node_start_end
+        INSERT INTO workflow_job_node_status
         VALUES
         (#{jobId}, #{nodeName}, #{status}, NOW())
     </insert>

@@ -1,0 +1,13 @@
+<coordinator-app name="fork-wordcount_coord" start="${startDate}T00:00+0900" end="${endDate}T00:00+0900" frequency="0 5 * * *" timezone="GMT+0900" xmlns="uri:oozie:coordinator:0.2">
+    <action>
+        <workflow>
+            <app-path>${wfBasePath}</app-path>
+            <configuration>
+                <property>
+                    <name>date</name>
+                    <value>${coord:formatTime(coord:dateOffset(coord:nominalTime(), -2, 'DAY'), 'yyyyMMdd')}</value>
+                </property>
+            </configuration>
+        </workflow>
+    </action>
+</coordinator-app>

@@ -1,0 +1,25 @@
+<workflow-app name="${date}-subworkflow-wordcount-wf" xmlns="uri:oozie:workflow:0.2">
+    <start to="Wordcount"/>
+    <action name="Wordcount">
+        <sub-workflow>
+            <app-path>${wordcountPath}</app-path>
+            <propagate-configuration/>
+        </sub-workflow>
+        <ok to="Sleep"/>
+        <error to="Sleep"/>
+    </action>
+    <action name="Sleep">
+        <sub-workflow>
+            <app-path>${sleepPath}</app-path>
+            <propagate-configuration/>
+        </sub-workflow>
+        <ok to="end"/>
+        <error to="kill"/>
+    </action>
+    <kill name="kill">
+        <message>
+            Job failed, error message[${wf:errorMessage(wf:lastErrorNode())}]
+        </message>
+    </kill>
+    <end name="end"/>
+</workflow-app>

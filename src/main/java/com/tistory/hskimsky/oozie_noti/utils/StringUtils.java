@@ -2,9 +2,7 @@ package com.tistory.hskimsky.oozie_noti.utils;
 
 import com.google.common.base.Joiner;
 
-import java.io.PrintWriter;
-import java.io.StringWriter;
-import java.util.*;
+import java.util.Collection;
 
 /**
  * String Utility.
@@ -14,134 +12,16 @@ import java.util.*;
  */
 public class StringUtils {
 
-    /**
-     * Properties의 key value를 문자열로 변환한다.
-     *
-     * @param properties Properties
-     * @return key value 문자열
-     */
-    public static String propertiesToString(Properties properties) {
-        StringWriter writer = new StringWriter();
-        PrintWriter out = new PrintWriter(writer);
-        Set<Object> keys = properties.keySet();
-        for (Object key : keys) {
-            out.println(key + "=" + properties.get(key));
-        }
-        return writer.getBuffer().toString();
-    }
-
-    /**
-     * 문자열 리스트를 문자열 배열로 변환한다.
-     *
-     * @param values 문자열 리스트
-     * @return 문자열 배열
-     */
-    public static String[] collectionToStringArray(List<String> values) {
-        String[] array = new String[values.size()];
-        int index = 0;
-        for (String value : values) {
-            array[index] = value;
-            index++;
-        }
-        return array;
-    }
-
-    /**
-     * 지정한 문자열이 비어있는지 확인한다.
-     *
-     * @param str 테스트할 문자열
-     * @return 비어있다면 <tt>true</tt>
-     */
     public static boolean isEmpty(String str) {
         return (str == null || str.trim().length() < 1);
     }
 
-    /**
-     * 콤마를 구분자로 리스트를 하나의 문자열을 구성한다.
-     *
-     * @param values 리스트
-     * @return 콤마 구분자를 포함한 문자열
-     */
-    public static String collectionToCommaDelimitedString(List<String> values) {
-        return listToDelimitedString(values, ",");
-    }
-
-    /**
-     * 지정한 구분자로 리스트를 하나의 문자열로 구성한다.
-     *
-     * @param values    리스트
-     * @param delimiter 구분자
-     * @return 구분자를 포함한 문자열
-     */
-    public static String listToDelimitedString(List<String> values, String delimiter) {
-        return Joiner.on(delimiter).join(values);
-    }
-
-    /**
-     * 지정한 구분자로 리스트를 하나의 문자열로 구성한다.
-     *
-     * @param collection 리스트
-     * @param delimiter  구분자
-     * @return 구분자를 포함한 문자열. 단, collection.size() 가 1 이하일 경우 구분자를 포함하지 않는다.
-     */
-    public static String collectionToDelimitedString(Collection<?> collection, String delimiter) {
-        return Joiner.on(delimiter).join(collection);
-    }
-
-    /**
-     * 지정한 구분자로 리스트를 하나의 문자열로 구성한다.
-     *
-     * @param collection 리스트
-     * @param delimiter  구분자
-     * @return 구분자를 포함한 문자열. 단, collection.size() 가 1 이하일 경우 구분자를 포함하지 않는다.
-     */
     public static String join(Collection<?> collection, String delimiter) {
         return Joiner.on(delimiter).join(collection);
     }
 
-    /**
-     * 문자열 배열을 리스트로 변환한다.
-     *
-     * @param values 문자열 배열열
-     * @return 문자열 리스트
-     */
-    public static List<String> arrayToCollection(String[] values) {
-        List<String> list = new ArrayList<>(values.length);
-        Collections.addAll(list, values);
-        return list;
-    }
-
-    /**
-     * 전체 문자열에서 패턴을 검색하여 새로운 패턴을 적용한다.
-     * <p>
-     * <pre>
-     * String result = StringUtils.replace("Hello World", "Hello", "World"); // "World World"
-     * </pre>
-     * </p>
-     *
-     * @param inString   전체 문자열
-     * @param oldPattern 검색할 문자열 패턴
-     * @param newPattern 새로 적용할 문자열 패턴
-     * @return 교체된 문자열
-     */
     public static String replace(String inString, String oldPattern, String newPattern) {
         return org.springframework.util.StringUtils.replace(inString, oldPattern, newPattern);
-    }
-
-    /**
-     * 문자열에서 Prefix를 제거한다.
-     *
-     * @param message 문자열
-     * @param prefix  제거할 Prefix
-     * @param isTrim  Prefix를 제거한 문자열의 Trim 처리 여부
-     * @return Prefix를 제거한 문자열
-     */
-    public static String removePrefix(String message, String prefix, boolean isTrim) {
-        if (message.contains(prefix)) {
-            int start = message.indexOf(prefix) + prefix.length();
-            return isTrim ? message.substring(start).trim() : message.substring(start);
-        }
-        return message;
     }
 
     /**
@@ -208,30 +88,5 @@ public class StringUtils {
             }
         }
         return builder.toString();
-    }
-
-    /**
-     * 전체 문자열에서 마지막 Separator를 기준으로 좌측 문자열을 반환한다.
-     *
-     * @param variable  Variable : ex) localhost:hostname
-     * @param separator Separater
-     * @return 마지막 Separator를 기준으로 좌측 문자열
-     */
-    public static String getVariableKey(String variable, String separator) {
-        int sep = variable.lastIndexOf(separator);
-        return variable.substring(0, sep);
-    }
-
-    /**
-     * 전체 문자열에서 마지막 Separator를 기준으로 우측 문자열을 반환한다.
-     *
-     * @param variable  Variable : ex) address:port
-     * @param separator Separator
-     * @return 마지막 Separator를 기준으로 우측 문자열
-     */
-    public static String getVariableValue(String variable, String separator) {
-        int sep = variable.lastIndexOf(separator);
-        int length = variable.getBytes().length;
-        return variable.substring(sep + 1, length);
     }
 }

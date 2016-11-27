@@ -1,0 +1,30 @@
+<workflow-app name="${date}-fork-wordcount-wf" xmlns="uri:oozie:workflow:0.2">
+    <start to="startFork"/>
+    <fork name="startFork">
+        <path start="Wordcount"/>
+        <path start="Sleep"/>
+    </fork>
+    <action name="Wordcount">
+        <sub-workflow>
+            <app-path>${wordcountPath}</app-path>
+            <propagate-configuration/>
+        </sub-workflow>
+        <ok to="endJoin"/>
+        <error to="endJoin"/>
+    </action>
+    <action name="Sleep">
+        <sub-workflow>
+            <app-path>${sleepPath}</app-path>
+            <propagate-configuration/>
+        </sub-workflow>
+        <ok to="endJoin"/>
+        <error to="endJoin"/>
+    </action>
+    <join name="endJoin" to="end"/>
+    <kill name="kill">
+        <message>
+            Job failed, error message[${wf:errorMessage(wf:lastErrorNode())}]
+        </message>
+    </kill>
+    <end name="end"/>
+</workflow-app>

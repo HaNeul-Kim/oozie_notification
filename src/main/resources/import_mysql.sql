@@ -7,7 +7,7 @@ CREATE TABLE `workflow_job_status` (
   `insert_time` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-CREATE TABLE `workflow_node_start_end` (
+CREATE TABLE `workflow_job_node_status` (
   `job_id` varchar(255) DEFAULT NULL,
   `node_name` varchar(255) DEFAULT NULL,
   `status` varchar(255) DEFAULT NULL,

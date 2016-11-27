@@ -1,0 +1,14 @@
+Oozie distribution consists of a single 'tar.gz' file containing:
+
+    Readme, license, notice & Release log files.
+    Oozie server: oozie-server directory.
+    Scripts: bin/ directory, client and server scripts.
+    Binaries: lib/ directory, client JAR files.
+    Configuration: conf/ server configuration directory.
+    Archives:
+        oozie-client-*.tar.gz : Client tools.
+        oozie.war : Oozie WAR file.
+        docs.zip : Documentation.
+        oozie-examples-*.tar.gz : Examples.
+        oozie-sharelib-*.tar.gz : Share libraries (with Streaming, Pig JARs).
+

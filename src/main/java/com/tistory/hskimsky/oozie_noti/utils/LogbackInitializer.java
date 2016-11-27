@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.impl.StaticLoggerBinder;
 
 import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 
 /**
  * Description.
@@ -17,7 +18,7 @@ import javax.servlet.ServletContextEvent;
  * @author Ha Neul Kim
  * @version 2.1.0
  */
-public class LogbackInitializer implements javax.servlet.ServletContextListener {
+public class LogbackInitializer implements ServletContextListener {
 
     private Logger logger = LoggerFactory.getLogger(LogbackInitializer.class);
 

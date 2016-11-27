@@ -1,6 +1,6 @@
 <workflow-app name="${date}-wordcount-wf" xmlns="uri:oozie:workflow:0.2">
-    <start to="mr_wordcount"/>
-    <action name="mr_wordcount">
+    <start to="MR_wordcount"/>
+    <action name="MR_wordcount">
         <map-reduce>
             <job-tracker>${jobTracker}</job-tracker>
             <name-node>${nameNode}</name-node>
@@ -50,23 +50,11 @@
                 </property>
             </configuration>
         </map-reduce>
-        <ok to="sleepShell" />
-        <error to="sleepShell" />
-    </action>
-    <action name="sleepShell">
-        <shell xmlns="uri:oozie:shell-action:0.2">
-            <job-tracker>${jobTracker}</job-tracker>
-            <name-node>${nameNode}</name-node>
-            <exec>${sleep_sh_path}</exec>
-            <file>${sleep_sh_path}#${sleep_sh_path}</file>
-        </shell>
         <ok to="end"/>
         <error to="kill"/>
     </action>
     <kill name="kill">
-        <message>
-            Job failed, error message[${wf:errorMessage(wf:lastErrorNode())}]
-        </message>
+        <message>Workflow failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
     </kill>
     <end name="end"/>
 </workflow-app>
